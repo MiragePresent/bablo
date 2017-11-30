@@ -226,6 +226,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // Models Aliases
+        'User'      =>  \App\Models\User::class,
+        'Check'     =>  \App\Models\Check::class,
+        'Quotient'  =>  \App\Models\Quotient::class,
+        'Payment'   =>  \App\Models\Payment::class
     ],
 
 ];
