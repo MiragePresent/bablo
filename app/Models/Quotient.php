@@ -23,11 +23,6 @@ class Quotient extends Model
     {
         return $this->belongsTo(\User::class);
     }
-    
-    public function quotient()
-    {
-        return $this->belongsTo(\Quotient::class);
-    }
 
     public function check()
     {
