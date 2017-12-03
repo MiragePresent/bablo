@@ -5,6 +5,18 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ *  Model User
+ * @property int $id
+ * @property string $login
+ * @property string $email
+ * @property string $first_name
+ * @property string $last_name
+ * @property float  $balance
+ *
+ * @property-read \App\Models\Check[]|\Illuminate\Database\Eloquent\Collection $checks
+ */
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -31,4 +43,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function checks()
+    {
+        return $this->hasMany(\Check::class);
+    }
 }
