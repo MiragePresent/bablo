@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
 
             // Users
             $table->unsignedInteger('user_id')->nullable();
-            $table->foreing('user_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onUpdate('cascade')
