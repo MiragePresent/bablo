@@ -4,6 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Check Model
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property float  $amount
+ * @property int    $status
+ *
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Quotient[] $quotients
+ *
+ */
+
 class Check extends Model
 {
 
