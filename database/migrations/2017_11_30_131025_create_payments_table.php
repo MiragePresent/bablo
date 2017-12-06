@@ -26,6 +26,7 @@ class CreatePaymentsTable extends Migration
 
             $table->float('amount');
             $table->string('comment', 1000);
+            $table->tinyInteger('status')->default(0);
 
             $table->timestamps();
         });

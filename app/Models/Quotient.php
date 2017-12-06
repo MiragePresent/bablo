@@ -16,12 +16,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Check $check
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment $payments
- * 
+ *
  */
 
 class Quotient extends Model
 {
 
+    const DEFAULT_STATUS = 0;
     const NOT_PAID = 0;
     const PARTIALLY_PAID = 1;
     const PAID = 2;
@@ -48,6 +49,6 @@ class Quotient extends Model
 
     public function payments()
     {
-        return $this->hasMany(\Payment::class);
+        return $this->belongsToMany(\Payment::class);
     }
 }

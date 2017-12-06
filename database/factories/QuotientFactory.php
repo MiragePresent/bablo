@@ -6,13 +6,13 @@ $factory->define(\Quotient::class, function (Faker $faker) {
     return [
         'user_id'   =>  function () {
             if (\User::count()) {
-                return \User::inRandomOrder()->first();
+                return \User::inRandomOrder()->first()->id;
             }
             return factory(\User::class)->create()->id;
         },
         'check_id'  => function () {
             if (\User::count()) {
-                return \User::inRandomOrder()->first();
+                return \User::inRandomOrder()->first()->id;
             }
             return factory(\Check::class)->create()->id;
         },
