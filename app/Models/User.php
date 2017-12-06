@@ -6,8 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * User Model
- *
+ *  Model User
  * @property int $id
  * @property string $login
  * @property string $email
@@ -15,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $last_name
  * @property float  $balance
  *
+ * @property-read \App\Models\Check[]|\Illuminate\Database\Eloquent\Collection $checks
  */
 
 class User extends Authenticatable
@@ -35,6 +35,10 @@ class User extends Authenticatable
         'balance'
     ];
 
+    protected $appends = [
+        'name',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -43,4 +47,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function checks()
+    {
+        return $this->hasMany(\Check::class);
+    }
+
+    public function getNameAttribute()
+    {
+        return !($this->first_name && $this->last_name) ? $this->login : $this->first_name. ' ' . $this->last_name;
+    }
 }
