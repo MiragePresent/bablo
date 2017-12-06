@@ -34,6 +34,7 @@ class CreateQuotientsTable extends Migration
 
             $table->float('amount');
             $table->tinyInteger('status');
+            $table->tinyInteger('is_approved')->default(0);
 
             $table->timestamps();
         });
