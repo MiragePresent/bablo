@@ -24,14 +24,6 @@ class CreatePaymentsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('set null');
 
-            // Quotient
-            $table->unsignedInteger('quotient_id');
-            $table->foreign('quotient_id')
-                ->references('id')
-                ->on('quotients')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
             $table->float('amount');
             $table->string('comment', 1000);
 
