@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $first_name
  * @property string $last_name
  * @property float  $balance
- * 
+ *
  */
 
 class User extends Authenticatable

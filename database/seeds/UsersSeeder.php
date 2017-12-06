@@ -43,10 +43,12 @@ class UsersSeeder extends Seeder
         /** @var \App\Models\User $user */
         $user = factory(\User::class)->create($data);
 
-        $this->command->info('Default data');
+        $this->command->line('');
+        $this->command->info('Default user');
         $this->command->table(
             ['Name', 'Surname', 'Login', 'Email', 'Password'],
             [[ $user->first_name, $user->last_name, $user->login, $user->email, $pass ?: 'secret' ]]
         );
+        $this->command->line('');
     }
 }
