@@ -33,7 +33,8 @@ class CreateQuotientsTable extends Migration
                 ->onDelete('cascade');
 
             $table->float('amount');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('is_approved')->default(0);
 
             $table->timestamps();
         });
