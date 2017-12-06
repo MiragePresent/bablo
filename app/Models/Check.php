@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- *  Check Model
+ * Check Model
  *
  * @property int $id
- * @property int $user_id
  * @property string $title
  * @property string $description
  * @property float  $amount
- * @property int $status
+ * @property int    $status
  *
  * @property-read \App\Models\User $user
- * @property-read \App\Models\Quotient[] $quotients
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Quotient[] $quotients
  *
  */
 
