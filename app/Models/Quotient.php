@@ -31,7 +31,6 @@ class Quotient extends Model
 
     protected $fillable = [
         'user_id',
-        'quotient_id',
         'check_id',
         'amount',
         'status',

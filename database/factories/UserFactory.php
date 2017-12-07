@@ -20,8 +20,10 @@ $factory->define(\User::class, function (Faker $faker) {
     return [
         'first_name'    => $faker->firstName(),
         'last_name'     => $faker->lastName(),
-        'login'         => $faker->unique()->word,
         'email'         => $faker->unique()->safeEmail,
+        'login'         =>  function ($row) {
+            return substr($row['email'],0, strpos($row['email'], '@'));
+        },
         'balance'       => 0,
         'password'      => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),

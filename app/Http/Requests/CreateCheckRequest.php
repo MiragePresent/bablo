@@ -24,7 +24,8 @@ class CreateCheckRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && $this->ajax();
+        return true;
+//        return auth()->check() && $this->ajax();
     }
 
     /**
@@ -43,9 +44,9 @@ class CreateCheckRequest extends FormRequest
         ];
 
         foreach ($this->quotients as $key=>$value) {
-            $rules['quotients.' . $key . 'user_id'] = 'required|exists:users,id';
-            $rules['quotients.' . $key . 'amount']  = 'required|numeric|min:0';
-        }
+            $rules['quotients.' . $key . '.user_id'] = 'required|exists:users,id';
+            $rules['quotients.' . $key . '.amount']  = 'required|numeric|min:0';
+        };
 
         return $rules;
     }
@@ -57,7 +58,7 @@ class CreateCheckRequest extends FormRequest
      */
     public function withValidator(Validator $validator)
     {
-        $validator->after(function (Validator $validator) {
+        $validator->after(function ($validator) {
             if ($this->amountsAreNotEqual()) {
                 $validator->errors()->add('amount', 'Check amount and value of users amount are not equal');
             }

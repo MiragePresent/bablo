@@ -43,10 +43,11 @@ class CheckController extends Controller
             \Quotient::create(array_merge($quotient, [ 'check_id'  =>  $check->id ]));
         }
 
-        return response(
-            $check->id,
-            201,
-            [ 'location' => route('api.check.info', [ 'check' => $check->id ]) ]
-        );
+        return response()
+            ->json(
+                [ 'id' => $check->id ],
+                201,
+                [ 'location' => route('api.checks.info', [ 'check' => $check->id ]) ]
+            );
     }
 }
