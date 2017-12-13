@@ -1,6 +1,6 @@
 # bablo
 
-** Quick start guide
+## Quick start guide
 
 * Clone this repository into your projects folder `git clone git@github.com:MiragePresent/bablo.git`
 * Switch to project directory `cd bablo`
