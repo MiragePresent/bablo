@@ -17,6 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('users', function () {
+   return \User::all()
+       ->toArray();
+});
+
 Route::get('users/{user}/checks', 'UserController@checks')->name('user.checks');
 
 Route::post('checks', 'CheckController@create')->name('checks.create');
