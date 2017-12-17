@@ -24,8 +24,7 @@ class CreateCheckRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
-//        return auth()->check() && $this->ajax();
+        return auth()->check() && $this->ajax();
     }
 
     /**
