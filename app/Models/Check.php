@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * Check Model
  *
  * @property int $id
+ * @property int $user_id
  * @property string $title
  * @property string $description
  * @property float  $amount
@@ -42,5 +43,26 @@ class Check extends Model
     {
         return $this->hasMany(\Quotient::class);
     }
+
+    /**
+     *  Determine whether the is partially paid
+     *
+     * @return bool
+     */
+    public function isPartiallyPaid()
+    {
+        return $this->status === self::PARTIALLY_PAID;
+    }
+
+    /**
+     *  Determine whether the is paid
+     *
+     * @return bool
+     */
+    public function isPaid()
+    {
+        return $this->status === self::PAID;
+    }
+
 
 }
