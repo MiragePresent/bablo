@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\UpdateCheckRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCheckRequest;
 
 class CheckController extends Controller
 {
-
     /**
      *  Check info
      *
@@ -49,5 +49,27 @@ class CheckController extends Controller
                 201,
                 [ 'location' => route('api.checks.info', [ 'check' => $check->id ]) ]
             );
+    }
+
+    public function update(UpdateCheckRequest $request, \Check $check)
+    {
+        $check->update($request->all());
+
+        foreach ($request->quotients  as $quotient_id=>$quotient_data) {
+
+            /** @var \App\Models\Quotient $quotient */
+            if ($quotient = \Quotient::find($quotient_id)) {
+                $quotient->update($quotient_data);
+            } else {
+                \Quotient::create(array_merge($quotient_data, [ 'check_id'  =>  $check->id ]));
+            }
+        }
+
+        return response()
+            ->json(array_merge(
+                $check->load('quotients')->toArray(),
+                [ 'warnings' => $request->warnings()->all() ]
+            ));
+
     }
 }
