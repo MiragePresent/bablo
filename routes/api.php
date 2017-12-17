@@ -26,8 +26,12 @@ Route::get('users/{user}/checks', 'UserController@checks')->name('user.checks');
 
 Route::post('checks', 'CheckController@create')->name('checks.create');
 Route::get('checks/{check}', 'CheckController@info')->name('checks.info');
-Route::patch('checks/{check}', 'CheckController@update')->name('checks.update');
-Route::delete('checks/{check}', 'CheckController@delete')->name('checks.delete');
+Route::patch('checks/{check}', 'CheckController@update')
+    ->name('checks.update')
+    ->middleware('can:update,check');
+Route::delete('checks/{check}', 'CheckController@delete')
+    ->name('checks.delete')
+    ->middleware('can:delete,check');
 
 Route::post('quotients', 'QuotientController@create')->name('quotients.create');
 Route::get('quotients/{quotient}', 'QuotientController@info')->name('quotients.info');
