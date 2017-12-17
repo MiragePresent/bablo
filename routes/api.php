@@ -25,7 +25,9 @@ Route::get('users', function () {
 Route::get('users/{user}/checks', 'UserController@checks')->name('user.checks');
 
 Route::post('checks', 'CheckController@create')->name('checks.create');
-Route::get('checks/{check}', 'CheckController@info')->name('checks.info');
+Route::get('checks/{check}', 'CheckController@info')
+    ->name('checks.info')
+    ->middleware('can:view,check');
 Route::patch('checks/{check}', 'CheckController@update')
     ->name('checks.update')
     ->middleware('can:update,check');
