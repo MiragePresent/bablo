@@ -66,11 +66,12 @@ class CreateCheckRequest extends FormRequest
 
     /**
      *  Check that quotients amounts and check amount are equal
+     *  ( Allowed inaccuracy of 0.5 )
      *
      * @return boolean
      */
     protected function amountsAreNotEqual()
     {
-        return abs($this->amount - collect($this->quotients)->sum('amount')) > 0.5;
+        return abs($this->amount - collect($this->get('quotients'))->sum('amount')) > .5;
     }
 }

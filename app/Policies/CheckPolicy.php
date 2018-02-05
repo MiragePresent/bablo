@@ -30,7 +30,7 @@ class CheckPolicy
      */
     public function update(\User $user, \Check $check)
     {
-        return $this->view($user, $check) && !$check->isPaid();
+        return ($user->id == $check->user_id) && !$check->isPaid();
     }
 
     /**

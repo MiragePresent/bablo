@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\UpdateCheckRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCheckRequest;
 
@@ -66,10 +65,7 @@ class CheckController extends Controller
         }
 
         return response()
-            ->json(array_merge(
-                $check->load('quotients')->toArray(),
-                [ 'warnings' => $request->warnings()->all() ]
-            ));
+            ->json($check->load('quotients')->toArray());
 
     }
 }

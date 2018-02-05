@@ -10,12 +10,12 @@ trait RequestWarningsTrait
     /** @var \Illuminate\Support\MessageBag $warningsBag */
     protected $warningsBag;
 
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->warningsBag = new MessageBag;
-    }
+//    public function __construct()
+//    {
+//        $this->warningsBag = new MessageBag;
+//
+//        parent::__construct();
+//    }
 
     /**
      *  Get warnings bag

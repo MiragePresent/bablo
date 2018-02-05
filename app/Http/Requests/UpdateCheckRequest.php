@@ -9,9 +9,6 @@ use App\Http\Requests\RequestWarningsTrait;
 class UpdateCheckRequest extends CreateCheckRequest
 {
 
-    use RequestWarningsTrait;
-
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -40,7 +37,7 @@ class UpdateCheckRequest extends CreateCheckRequest
 
     /**
      *  Filter quotients which are paid or partially paid
-     * 
+     *
      * @param Validator $validator
      */
     private function filterPaidQuotients(Validator $validator)
@@ -50,11 +47,11 @@ class UpdateCheckRequest extends CreateCheckRequest
                 if (!isset($quotient['id'])) {
                     return true;
                 } elseif (!$validator->errors()->has('quotients.' . $key . '.id')) {
-                    if (!\Quotient::find($quotient['id'])->hasPayments()) {
+                    if (!\Quotient::find($quotient['id'])->has('payments')) {
                         return true;
                     } else {
-                        $this
-                            ->warnings()
+                        $validator
+                            ->errors()
                             ->add('quotients.' . $key . '.id', 'You can\'t edit quotient with payment');
                         return false;
                     }
