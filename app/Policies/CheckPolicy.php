@@ -42,6 +42,6 @@ class CheckPolicy
      */
     public function delete(\User $user, \Check $check)
     {
-        return $this->view($user, $check) && !$check->isPartiallyPaid();
+        return ($user->id == $check->user_id) && !$check->isPartiallyPaid();
     }
 }

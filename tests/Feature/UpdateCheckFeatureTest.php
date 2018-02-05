@@ -66,4 +66,17 @@ class UpdateCheckFeatureTest extends TestCase
         $this->assertEquals($this->check->status, $data['status'], 'Status was dropped');
         $this->assertCount(count($postData['quotients']), $data['quotients'], 'Quotients are incorrect');
     }
+
+    /** @test */
+    public function delete_a_check()
+    {
+        $this->actingAs($this->check->user, 'api')
+            ->delete(
+                route('api.checks.delete', ['check' => $this->check->id]),
+                Settings::AJAX_HEADERS
+            )
+            ->assertStatus(204);
+
+        $this->assertEquals(0, \Check::whereId($this->check->id)->count(), 'Check was not deleted');
+    }
 }

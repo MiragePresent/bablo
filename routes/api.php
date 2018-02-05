@@ -31,7 +31,10 @@ Route::get('checks/{check}', 'CheckController@info')
 Route::patch('checks/{check}', 'CheckController@update')
     ->name('checks.update')
     ->middleware('can:update,check');
-Route::delete('checks/{check}', 'CheckController@delete')
+Route::delete('checks/{check}', function (\Check $check) {
+        $check->delete();
+        return response('', 204);
+    })
     ->name('checks.delete')
     ->middleware('can:delete,check');
 
