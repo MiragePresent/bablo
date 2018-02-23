@@ -16,13 +16,13 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
 
-            // Users
-            $table->unsignedInteger('user_id')->nullable();
-            $table->foreign('user_id')
+            // Quotient relation
+            $table->unsignedInteger('quotient_id');
+            $table->foreign('quotient_id')
                 ->references('id')
-                ->on('users')
+                ->on('quotients')
                 ->onUpdate('cascade')
-                ->onDelete('set null');
+                ->onDelete('cascade');
 
             $table->float('amount');
             $table->string('comment', 1000);
