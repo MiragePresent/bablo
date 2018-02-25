@@ -15,7 +15,6 @@ class PaymentSeeder extends Seeder
             ->each(function (\Quotient $quotient) {
                 factory(\Payment::class)
                     ->create([
-                        'user_id' => $quotient->user_id,
                         'amount'  => rand(0,5) ? $quotient->amount : (rand(1,ceil($quotient->amount)) * .01)
                     ]);
             });

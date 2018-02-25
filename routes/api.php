@@ -43,9 +43,6 @@ Route::get('quotients/{quotient}', 'QuotientController@info')->name('quotients.i
 Route::patch('quotients/{quotient}', 'QuotientController@update')->name('quotients.update');
 Route::delete('quotients/{quotient}', 'QuotientController@delete')->name('quotients.delete');
 
-
-Route::post('payments', 'PaymentController@create')->name('payments.create');
-Route::get('payments/{payment}', 'PaymentController@info')->name('payments.info');
-Route::patch('payments/{payment}', 'PaymentController@update')->name('payments.update');
-Route::delete('payments/{payment}', 'PaymentController@approve')->name('payments.approve');
-Route::delete('payments/{payment}', 'PaymentController@delete')->name('payments.delete');
+// Payments
+Route::patch('{quotient}/payments/{payment}', 'PaymentController@approve')->name('payments.approve');
+Route::apiResource('{quotient}/payments', 'PaymentController');

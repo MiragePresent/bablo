@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $comment
  *
  * @property-read \App\Models\User
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Quotient[] $quotients
+ * @property-read \App\Models\Quotient $quotient
  *
  */
 
@@ -38,9 +38,9 @@ class Payment extends Model
         return $this->belongsTo(\User::class);
     }
 
-    public function quotients()
+    public function quotient()
     {
-        return $this->belongsToMany(\Quotient::class);
+        return $this->belongsTo(\Quotient::class);
     }
 
 }
