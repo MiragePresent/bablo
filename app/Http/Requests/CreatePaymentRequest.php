@@ -58,6 +58,6 @@ class CreatePaymentRequest extends FormRequest
         // We also should check whether there are some quotient payments
         $left = $quotient->amount - $quotient->payments()->sum('amount');
 
-        return $this->amount >= $left && $this->amount <= $left;
+        return $this->amount > 0 && $this->amount <= $left;
     }
 }
