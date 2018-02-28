@@ -11,8 +11,8 @@ $factory->define(\Quotient::class, function (Faker $faker) {
             return factory(\User::class)->create()->id;
         },
         'check_id'  => function () {
-            if (\User::count()) {
-                return \User::inRandomOrder()->first()->id;
+            if (\Check::count()) {
+                return \Check::inRandomOrder()->first()->id;
             }
             return factory(\Check::class)->create()->id;
         },
